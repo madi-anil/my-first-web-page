@@ -1,35 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Fixed favicon path to match your folder structure -->
+
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!-- Link to external CSS -->
     <link rel="stylesheet" href="css/styles.css">
+
     <title>MyFirstPage</title>
+
+    <style>
+        :root {
+            --bg: #f7f6f2;
+            --text: #28251d;
+            --surface: #ffffff;
+            --border: #d4d1ca;
+        }
+
+        [data-theme="dark"] {
+            --bg: #171614;
+            --text: #cdccca;
+            --surface: #1c1b19;
+            --border: #393836;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.3s ease;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .theme-btn {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            padding: 12px 18px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s ease;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Inline styles moved to CSS for better practice -->
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-btn" id="themeToggle">🌙</button>
+
     <h1>Hello World</h1>
     <h2>h2 element</h2>
     <h3>h3 element</h3>
     <h4>h4 element</h4>
     <h5>h5 element</h5>
     <h6>h6 element</h6>
-    
+
     <h1>Another h1 postal tag</h1>
-    
-    <p>This is a paragraph. Testing the layout on my Galaxy Book 4 by <u>madikonda anil</u>.</p>
-    
+
+    <p>
+        This is a paragraph. Testing the layout on my Galaxy Book 4 by
+        <u>madikonda anil</u>.
+    </p>
+
     <span>This is a span element</span>
-    
-    <!-- Verified image path from your Screen Recording -->
+
+    <br><br>
+
     <img src="image/computer00.jpg" alt="Computer" width="600" height="400" />
 
-    <br>
+    <br><br>
+
     <a href="https://www.google.com" target="_blank">Visit Google</a>
 
     <ul>
@@ -39,25 +85,47 @@
     </ul>
 
     <section class="cards-container">
+
         <div class="card">
             <img src="image/computer00.jpg" alt="Computer 1" width="300" height="200">
             <h3>Computer 1</h3>
             <p>This is a description of the card content.</p>
         </div>
-        
+
         <div class="card">
-            <!-- Fixed: Changed 'Computer002' to 'computer002' to match your folder -->
             <img src="image/computer002.jpg" alt="Computer 2" width="300" height="200">
             <h3>Computer 2</h3>
             <p>This is a description of the card content.</p>
         </div>
-        
+
         <div class="card">
             <img src="image/computer003.jpg" alt="Computer 3" width="300" height="200">
             <h3>Computer 3</h3>
             <p>This is a description of the card content.</p>
         </div>
+
     </section>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        const btn = document.getElementById("themeToggle");
+        const root = document.documentElement;
+
+        let dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        function updateTheme() {
+            root.setAttribute("data-theme", dark ? "dark" : "light");
+            btn.textContent = dark ? "☀️" : "🌙";
+        }
+
+        updateTheme();
+
+        btn.addEventListener("click", () => {
+            dark = !dark;
+            updateTheme();
+        });
+    </script>
+
 </body>
 
 </html>
